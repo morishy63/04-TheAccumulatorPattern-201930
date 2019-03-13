@@ -8,10 +8,10 @@ in another classic form:
    IN GRAPHICS:   x = x + pixels
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Yuhei Morishita.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-
+import math
 # -----------------------------------------------------------------------------
 # Students: As you work each of these problems, ask yourself:
 #   1. Do I need a loop?
@@ -21,7 +21,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
 #        -- BEFORE the loop?
 #        -- IN the loop?
 #        -- AFTER the loop?
-# -----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_sum_more_cosines()
@@ -66,11 +66,33 @@ def run_test_sum_more_cosines():
     else:
         print('       actual:  ', answer)
 
+    expected = 1.0
+    answer2 = sum_more_cosines(0, 90)
+    print('Test 2 expected:', expected, '(approximately)')
+    if answer is not None:
+        print('       actual:  ', round(answer2, 5))
+    else:
+        print('       actual:  ', answer2)
+
     # -------------------------------------------------------------------------
-    # TODO: 2 (continued).
+    # DONE: 2 (continued).
     # Below this comment, add 2 more test cases of your own choosing.
     # -------------------------------------------------------------------------
+    expected = 0
+    answer3 = sum_more_cosines(0, 180)
+    print('Test 3 expected:', expected, '(approximately)')
+    if answer is not None:
+        print('       actual:  ', round(answer3, 5))
+    else:
+        print('       actual:  ', answer3)
 
+    expected = -1
+    answer4 = sum_more_cosines(90,180)
+    print('Test 4 expected:', expected, '(approximately)')
+    if answer is not None:
+        print('       actual:  ', round(answer4, 5))
+    else:
+        print('       actual:  ', answer4)
 
 def sum_more_cosines(m, n):
     """
@@ -86,8 +108,12 @@ def sum_more_cosines(m, n):
             cos(-4) + cos(-3) + cos(-2) + cos(-1) + cos(0) + cos(1)
          which is approximately 0.02082.
     """
+    cos_total = 0
+    for m in range(n+1):
+        cos_total = cos_total + math.cos(m)
+    return cos_total
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #   That is called TEST-DRIVEN DEVELOPMENT (TDD).
     #
@@ -146,6 +172,11 @@ def count_sines_from(m, n):
       -- count_sines_from(7, 7)  returns  0
       -- count_sines_from(9, 9)  returns  1
     """
+    count_sines = 0
+    for m in range(n+1):
+        if math.sin(m) < 0.5:
+            count_sines = count_sines + 1
+    return count_sines
     # -------------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
